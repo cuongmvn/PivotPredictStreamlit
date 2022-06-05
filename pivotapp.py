@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import requests
 
+
 st.title('HR Helper')
 
 with st.expander("Details"):
@@ -12,5 +13,5 @@ with st.expander("Details"):
 
 uploaded_file = st.file_uploader("Choose a file for prediction")
 if uploaded_file is not None:
-    res = requests.post(f"https://predictjobtitle.herokuapp.com/predict-csv", uploaded_file)
+    res = requests.post(f"https://predictjobtitle.herokuapp.com/predict-csv", file=uploaded_file)
     st.write(res.json())
