@@ -23,16 +23,15 @@ if uploaded_predictions_file is not None:
 
 st.sidebar.header("Specify Input Parameters")
 def user_input_features():
-    Entreprise = st.text_input('Entreprise', 'Sanofi')
-    Technologies = st.text_input('Skills', 'Python/Tensorflow/scikit-learn/Deep learning/R')
-    
+    Entreprise = st.sidebar.text_input('Entreprise', 'Sanofi')
+    Technologies = st.sidebar.text_input('Skills', 'Python/Tensorflow/scikit-learn/Deep learning/R')
     Diplome = st.sidebar.selectbox(
     "Select your diplome",
     ("Phd", "Master", "Bachelor", "No diploma")
     )
     Experience = st.sidebar.slider('Experience', min_value=0, max_value=20)
     
-    Ville = st.multiselect('Work location',
+    Ville = st.sidebar.selectbox('Work location',
     ['Paris', 'Marseille', 'Nantes', 'Bordeaux', 'Lille', 'Toulouse',
     'Rouen', 'Lyon', 'Strasbourg', 'Grenoble', 'Nice', 'Toulon',
     'Montpellier', 'Rennes'])
@@ -43,7 +42,7 @@ def user_input_features():
             'Ville': Ville}
     features = pd.DataFrame(data, index=[0])
     return features
-    
+
 df = user_input_features()
 
 st.header('Specified Input parameters')
