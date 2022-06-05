@@ -14,4 +14,4 @@ with st.expander("Details"):
 uploaded_file = st.file_uploader("Choose a file for prediction")
 if uploaded_file is not None:
     res = requests.post(f"https://predictjobtitle.herokuapp.com/predict-csv", files=uploaded_file)
-    st.write(res.content)
+    st.write(res.json())
