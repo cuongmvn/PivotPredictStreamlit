@@ -21,7 +21,7 @@ if uploaded_predictions_file is not None:
     res = requests.post(f"https://predictjobtitle.herokuapp.com/predictions", json = {'content': df.to_json()})
     st.write(res.json())
 
-st.sidebar.header("Specify Input Parameters For Single Prediction")
+st.sidebar.header("Single Prediction")
 def user_input_features():
     Entreprise = st.sidebar.text_input('Entreprise', 'Sanofi')
     Technologies = st.sidebar.text_input('Skills', 'Python/Tensorflow/scikit-learn/Deep learning/R')
@@ -45,11 +45,10 @@ def user_input_features():
 
 df_single = user_input_features()
 
-st.header('Specified Input parameters')
+st.header('Your Candidate Profile:')
 st.write(df_single)
 st.write('---')
 
 if st.button('Predict'):
-    df_single.drop(columns=["Metier"], inplace=True)
     res = requests.post(f"https://predictjobtitle.herokuapp.com/predictions", json = {'content': df.to_json()})
     st.write(res.json())
