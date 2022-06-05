@@ -50,5 +50,5 @@ st.write(df_single)
 st.write('---')
 
 if st.button('Predict'):
-    res = requests.post(f"https://predictjobtitle.herokuapp.com/predictions", json = {'content': df.to_json()})
+    res = requests.post(f"https://predictjobtitle.herokuapp.com/predictions", json = {'content': df_single.to_json()})
     st.write(res.json())
