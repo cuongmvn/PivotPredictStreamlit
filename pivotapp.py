@@ -11,7 +11,7 @@ with st.expander("Details"):
 
 
 st.header("Predict section")
-uploaded_predictions_file = st.file_uploader("Choose a file for predictions")
+uploaded_predictions_file = st.file_uploader("Choose a file for multiple predictions")
 if uploaded_predictions_file is not None:
     # Can be used wherever a "file-like" object is accepted:
     df = pd.read_csv(uploaded_predictions_file, sep=';', decimal = ',')
@@ -21,7 +21,7 @@ if uploaded_predictions_file is not None:
     res = requests.post(f"https://predictjobtitle.herokuapp.com/predictions", json = {'content': df.to_json()})
     st.write(res.json())
 
-st.sidebar.header("Specify Input Parameters")
+st.sidebar.header("Specify Input Parameters For Single Prediction")
 def user_input_features():
     Entreprise = st.sidebar.text_input('Entreprise', 'Sanofi')
     Technologies = st.sidebar.text_input('Skills', 'Python/Tensorflow/scikit-learn/Deep learning/R')
@@ -43,8 +43,13 @@ def user_input_features():
     features = pd.DataFrame(data, index=[0])
     return features
 
-df = user_input_features()
+df_single = user_input_features()
 
 st.header('Specified Input parameters')
 st.write(df)
 st.write('---')
+
+if st.button('Predict'):
+    df_single.drop(columns=["Metier"], inplace=True)
+    res = requests.post(f"https://predictjobtitle.herokuapp.com/predictions", json = {'content': df.to_json()})
+    st.write(res.json())
