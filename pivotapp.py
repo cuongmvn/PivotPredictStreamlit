@@ -46,7 +46,7 @@ def user_input_features():
 df_single = user_input_features()
 
 st.header('Specified Input parameters')
-st.write(df)
+st.write(df_single)
 st.write('---')
 
 if st.button('Predict'):
