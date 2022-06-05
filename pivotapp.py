@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import requests
-z
+
 st.title('HR Helper')
 
 with st.expander("Details"):
